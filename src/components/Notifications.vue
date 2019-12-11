@@ -1,5 +1,10 @@
 <template>
     <v-container fluid class="text-center">
+      <v-snackbar
+				v-model="snackbar"
+			>
+				New Notification: Hello World
+			</v-snackbar>
       <v-row
         justify="space-around"
       >
@@ -7,9 +12,9 @@
           <v-btn
             class="mx-1"
             color="primary"
-            @click="unread++"
+            @click="createNotification()"
           >
-            New Notification
+            Create Notification
           </v-btn>
           <v-btn
             class="mx-1"
@@ -37,7 +42,15 @@ export default {
     name: 'Notifications',
 
     data: () => ({
-        unread: 2
-    }),
+      unread: 0,
+      snackbar: false,
+		}),
+		
+		methods: {
+			createNotification: function() {
+				this.unread++;
+				this.snackbar = true;
+			}
+		}
 };
 </script>
