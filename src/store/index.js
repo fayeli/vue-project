@@ -6,15 +6,21 @@ Vue.use(Vuex)
 
 export const actions = {
   async getData(store) {
-    const response = await axios.get('https://mymockendpoint.com/projects/1')
-    store.commit('SET_DATA', { projectId: response.data.projectId })
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    store.commit('SET_DATA', response.data)
   }
 }
 
 export default new Vuex.Store({
   state: {
+    data: [],
+    displayedProjects: []
   },
   mutations: {
+    SET_DATA(state, data) {
+      state.data = data;
+      state.displayedProjects = data;
+    }
   },
   actions: actions,
   modules: {
