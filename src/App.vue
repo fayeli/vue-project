@@ -1,22 +1,23 @@
 <template>
   <v-app>
     <v-content>
-      <Notifications/>
-      <HelloWorld/>
+      <NotificationSystem/>
+      <ProjectsTable/>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
-import Notifications from './components/Notifications';
+
+import NotificationSystem from './components/NotificationSystem';
+import ProjectsTable from './components/ProjectsTable'
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
-    Notifications,
+    NotificationSystem,
+    ProjectsTable,
   },
 
   data: () => ({

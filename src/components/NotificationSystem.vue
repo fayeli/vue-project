@@ -46,7 +46,7 @@
 
 <script>
 export default {
-    name: 'Notifications',
+    name: 'NotificationSystem',
 
     data: () => ({
       unread: 0,
