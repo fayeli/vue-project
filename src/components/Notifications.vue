@@ -55,8 +55,11 @@ export default {
 		
 		methods: {
 			createNotification: function() {
+				this.snackbar = false;
 				this.unread++;
-				this.snackbar = true;
+				setTimeout(() => {
+					this.snackbar = true;
+				}, 500);
 			},
 			markToastAsRead: function() {
 				this.unread--;
