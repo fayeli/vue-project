@@ -4,6 +4,13 @@
 				v-model="snackbar"
 			>
 				New Notification: Hello World
+				<v-btn
+					color="blue"
+					text
+					@click="markToastAsRead()"
+				>
+					Mark as Read
+				</v-btn>
 			</v-snackbar>
       <v-row
         justify="space-around"
@@ -50,6 +57,10 @@ export default {
 			createNotification: function() {
 				this.unread++;
 				this.snackbar = true;
+			},
+			markToastAsRead: function() {
+				this.unread--;
+				this.snackbar = false;
 			}
 		}
 };
