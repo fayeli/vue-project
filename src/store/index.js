@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export const actions = {
   async getData(store) {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
+    const response = await axios.get('https://my-json-server.typicode.com/fayeli/vue-project/projects')
     store.commit('SET_DATA', response.data)
   }
 }
@@ -14,7 +14,7 @@ export const actions = {
 export default new Vuex.Store({
   state: {
     data: [],
-    displayedProjects: []
+    displayedProjects: [],
   },
   mutations: {
     SET_DATA(state, data) {

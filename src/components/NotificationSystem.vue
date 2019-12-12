@@ -3,7 +3,7 @@
       <v-snackbar
 				v-model="snackbar"
 			>
-				New Notification: Hello World
+				{{ toastText }}
 				<v-btn
 					color="blue"
 					text
@@ -19,7 +19,7 @@
           <v-btn
             class="mx-1"
             color="primary"
-            @click="createNotification()"
+            @click="createNotification('Testing')"
           >
             Create Notification
           </v-btn>
@@ -45,18 +45,48 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
     name: 'NotificationSystem',
 
     data: () => ({
       unread: 0,
       snackbar: false,
-		}),
-		
+      projectIds: [],
+      notifications: [],
+      toastText: ''
+    }),
+    
+    computed: mapState(['data']),
+    watch: {
+      data(newValue, oldValue) {
+
+        // Keep track of the projects on the first time data is loaded
+        if (oldValue.length === 0) {
+          this.projectIds = newValue.map(element => element.projectId);
+          return;
+        }
+
+        console.log(`Notification data updating from ${oldValue} to ${newValue}`);
+        newValue.forEach(element => {
+          if (this.projectIds.includes(element.projectId)) {
+            console.log('Existing project');
+            // TODO: check for updated fields
+          } else {
+            // New project is detected, create notification for it
+            this.projectIds.push(element.projectId);
+            this.createNotification(`New project ${element.projectName} was added`);
+          }
+        });
+      }
+    },
+    
 		methods: {
-			createNotification: function() {
+			createNotification: function(text) {
 				this.snackbar = false;
-				this.unread++;
+        this.unread++;
+        this.toastText = text;
+        this.notifications.push(text);
 				setTimeout(() => {
 					this.snackbar = true;
 				}, 500);
