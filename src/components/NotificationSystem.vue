@@ -46,6 +46,14 @@
 
 <script>
 import { mapState } from 'vuex';
+
+const fieldsMap = {
+  'projectName'          : 'project name',
+  'fundingGoal'          : 'funding goal',
+  'percentageComplete'   : 'percentage of completion',
+  'categoryName'         : 'category',
+};
+
 export default {
     name: 'NotificationSystem',
 
@@ -67,15 +75,21 @@ export default {
           return;
         }
 
-        console.log(`Notification data updating from ${oldValue} to ${newValue}`);
         newValue.forEach(element => {
           if (this.projectIds.includes(element.projectId)) {
-            console.log('Existing project');
-            // TODO: check for updated fields
+            
+            // Compare against old data to see if an existing project was updated
+            let oldElement = oldValue.find(value => value.projectId === element.projectId);
+            for (let field in fieldsMap) {
+              if (element[field] !== oldElement[field]) {
+                this.createNotification(`The ${fieldsMap[field]} of ${oldElement.projectName} was updated to ${element[field]}.`);
+              }
+            }
+
           } else {
             // New project is detected, create notification for it
             this.projectIds.push(element.projectId);
-            this.createNotification(`New project ${element.projectName} was added`);
+            this.createNotification(`New project ${element.projectName} was added.`);
           }
         });
       }
