@@ -21,14 +21,14 @@
             color="primary"
             @click="createNotification('Testing')"
           >
-            Create Notification
+            Create Test Notification
           </v-btn>
           <v-btn
             class="mx-1"
             color="error"
             @click="unread = 0"
           >
-            Read All
+            Clear Unread Notifications
           </v-btn>
         </div>
         <v-badge
@@ -77,7 +77,7 @@ export default {
 
         newValue.forEach(element => {
           if (this.projectIds.includes(element.projectId)) {
-            
+
             // Compare against old data to see if an existing project was updated
             let oldElement = oldValue.find(value => value.projectId === element.projectId);
             for (let field in fieldsMap) {
