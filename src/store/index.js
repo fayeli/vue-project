@@ -14,12 +14,10 @@ export const actions = {
 export default new Vuex.Store({
   state: {
     data: [],
-    displayedProjects: [],
   },
   mutations: {
     SET_DATA(state, data) {
       state.data = data;
-      state.displayedProjects = data;
     }
   },
   actions: actions,

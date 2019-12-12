@@ -3,7 +3,11 @@
         <v-card>
             <v-card-title>
                 Projects
+                
             </v-card-title>
+            <v-toolbar flat>
+                <v-switch v-model="showFeaturedOnly" label="Show Featured Projects Only" class="mt-2"></v-switch>
+            </v-toolbar>
             <v-data-table
                 :headers="headers"
                 :items="projects"
@@ -16,10 +20,14 @@
 <script>
 export default {
     name: 'ProjectsTable',
-    
+
     computed: {
         projects() {
-            return this.$store.state.displayedProjects;
+            if (this.showFeaturedOnly) {
+                return this.$store.state.data.filter(project => project.featured === '1');
+            } 
+
+            return this.$store.state.data;
         }
     },
 
@@ -32,6 +40,7 @@ export default {
             { text: 'Funding Goal ($)', value: 'fundingGoal' },
             { text: 'Completion (%)', value: 'percentageComplete' },
         ],
+        showFeaturedOnly: false,
     }),
 }
 </script>

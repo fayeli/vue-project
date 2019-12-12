@@ -4,6 +4,7 @@ let mockData = [
       "projectId": "8182fad6-06df-4af4-9fad-311578efb835",
       "projectName": "Test title 1",
       "projectDescription": "Some description",
+      "featured": "1",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "100000",
@@ -14,6 +15,7 @@ let mockData = [
       "projectId": "8182fad6-06df-4af4-9fad-311578efb836",
       "projectName": "Test title 2",
       "projectDescription": "Some description",
+      "featured": "0",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "100000",
@@ -24,6 +26,7 @@ let mockData = [
       "projectId": "8182fad6-06df-4af4-9fad-311578efb837",
       "projectName": "Test title 3",
       "projectDescription": "Some description",
+      "featured": "0",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "100000",
@@ -49,6 +52,7 @@ describe('API Consumer Test', () => {
       "projectId": "8182fad6-06df-4af4-9fad-311578efb838",
       "projectName": "Test title 4",
       "projectDescription": "Some description",
+      "featured": "0",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "100000",
@@ -73,6 +77,7 @@ describe('Notifications Test', () => {
       "projectId": "8182fad6-06df-4af4-9fad-311578efb839",
       "projectName": "Test title 5",
       "projectDescription": "Some description",
+      "featured": "1",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "100000",
@@ -90,6 +95,7 @@ describe('Notifications Test', () => {
       "projectId": "8182fad6-06df-4af4-9fad-311578efb835",
       "projectName": "Test title 1",
       "projectDescription": "Some description",
+      "featured": "1",
       "categoryId": "1",
       "categoryName": "Test Category",
       "fundingGoal": "120000",
@@ -104,4 +110,5 @@ describe('Notifications Test', () => {
   it('Should show a count for the number of unread notifications', () => {
     cy.contains('span.v-badge__badge.green', 3)
   })
+  
 })
